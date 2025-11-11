@@ -20,12 +20,11 @@
 	            throws ServletException, IOException {
 	
 	        try {
-	            // 1️⃣ Lấy thông tin từ form
-	//            int customerId = Integer.parseInt(request.getParameter("customerId"));
+	
 	            int membershipDurationYears = Integer.parseInt(request.getParameter("membershipDurationYears"));
 	            String membershipLevel = request.getParameter("membershipLevel");
 	            System.out.println("form: " + membershipDurationYears + " " + membershipLevel);
-	            // 2️⃣ Lấy thông tin khách hàng từ session (đã đăng nhập)
+	    
 	            HttpSession session = request.getSession();
 	            User user = (User) session.getAttribute("user");
 	            System.out.println("user: " + user.getUsername());
@@ -36,16 +35,16 @@
 	                return;
 	            }
 	
-	            // 3️⃣ Đóng gói dữ liệu đăng ký hội viên
+	    
 	            Customer customer = new Customer(user);
 	            MembershipRegistration registration = new MembershipRegistration(customer,membershipDurationYears,membershipLevel);
 	            System.out.println("data " + registration.getMembershipDurationYears() + " " + registration.getCustomer().getUsername());
 	
-	            // 4️⃣ Lưu vào cơ sở dữ liệu
+	         
 	            MembershipRegistrationDAO dao = new MembershipRegistrationDAO();
 	            boolean isSaved = dao.saveMembershipRegistration(registration);
 	
-	            // 5️⃣ Trả kết quả lại cho view
+	        
 	            if (isSaved) {
 	                request.setAttribute("message", "Đăng ký thành viên thành công!");
 	            } else {
