@@ -16,10 +16,10 @@
     
 </head>
 <body>
-    <%-- Đã thay đổi: h1 (tiêu đề chính) lên trên --%>
+  
     <h1>Đăng ký thành viên</h1>
     
-    <%-- Đã thay đổi: h2 (lời chào) xuống dưới --%>
+    
     <h2>Xin chào, <%= user.getName() %>!</h2>
 
     <form action="<%= request.getContextPath() %>/MembershipRegistrationServlet" method="post">
