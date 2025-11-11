@@ -19,7 +19,7 @@ public class RevenueStatisticsDAO extends DAO {
     public List<RevenueStatistics> getRevenueStatisticsByDate(String fromDate, String toDate) {
         List<RevenueStatistics> result = new ArrayList<>();
 
-        // === BẮT ĐẦU SỬA SQL ===
+      
         String sql = """
             SELECT 
                 c.tblUserID AS customerId,
@@ -31,10 +31,8 @@ public class RevenueStatisticsDAO extends DAO {
             FROM tblcustomer c
             JOIN tbluser u ON c.tblUserID = u.ID
             LEFT JOIN tblorder o ON o.tblCustomerID = c.tblUserID
-            """; // <- Không JOIN với tblorderdetail nữa
+            """; 
 
-        // Di chuyển điều kiện ngày tháng vào mệnh đề ON của LEFT JOIN
-        // để đảm bảo vẫn giữ lại các khách hàng có doanh thu = 0
         if (fromDate != null && !fromDate.trim().isEmpty()) {
             sql += " AND o.createdAt >= ? ";
         }
@@ -42,18 +40,18 @@ public class RevenueStatisticsDAO extends DAO {
             sql += " AND o.createdAt <= ? ";
         }
 
-        // Thêm phần còn lại của truy vấn
+  
         sql += """
             GROUP BY c.tblUserID, u.name, u.email, u.phoneNumber, u.address
             ORDER BY totalRevenue DESC
             """;
-        // === KẾT THÚC SỬA SQL ===
+      
 
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             int idx = 1;
             
-            // Cột createdAt của bạn là kiểu DATE, không cần thêm giờ:phút:giây
+      
             if (fromDate != null && !fromDate.trim().isEmpty()) {
                 ps.setString(idx++, fromDate);
             }
