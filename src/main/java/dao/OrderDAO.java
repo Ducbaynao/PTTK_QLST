@@ -11,7 +11,7 @@ public class OrderDAO extends DAO {
         super();
     }
 
-    // Lấy danh sách đơn hàng của khách hàng + khoảng thời gian
+  
     public List<Order> getOrdersByCustomerAndDate(int customerId, String fromDate, String toDate) {
         List<Order> orders = new ArrayList<>();
         StringBuilder sql = new StringBuilder("""
@@ -25,7 +25,7 @@ public class OrderDAO extends DAO {
             WHERE o.tblCustomerID = ?
             """);
 
-        // Thêm điều kiện ngày nếu có
+       
         if (fromDate != null && !fromDate.isEmpty()) {
             sql.append(" AND o.createdAt >= ? ");
         }
@@ -81,7 +81,7 @@ public class OrderDAO extends DAO {
             order = new Order();
         }
 
-        // Thông tin chung
+       
         order.setId(orderId);
         order.setCreatedAt(ts != null ? new Date(ts.getTime()) : null);
         order.setCreatedBy(rs.getObject("createdBy") != null ? rs.getInt("createdBy") : null);
@@ -89,7 +89,7 @@ public class OrderDAO extends DAO {
         order.setPaymentMethod(rs.getString("paymentMethod"));
         order.setCustomer(getCustomerById(customerId));
 
-        // Nạp chi tiết (rất quan trọng cho JSP)
+     
         if (order instanceof OnlineOrder) {
             ((OnlineOrder) order).setDetails(getOnlineOrderDetails(orderId));
         } else if (order instanceof SalesInvoice) {
@@ -99,13 +99,11 @@ public class OrderDAO extends DAO {
         return order;
     }
 
-    // Chi tiết đơn online
-    private List<OnlineOrderDetail> getOnlineOrderDetails(int orderId) { // orderId ở đây là tblorder.ID
+   
+    private List<OnlineOrderDetail> getOnlineOrderDetails(int orderId) { 
         List<OnlineOrderDetail> details = new ArrayList<>();
         
-        // === SỬA SQL TẠI ĐÂY ===
-        // Chúng ta phải JOIN qua tblonlineorder để liên kết
-        // tblorder.ID (biến orderId) với tblonlineorderdetail.tblOrderID (liên kết với tblonlineorder.ID)
+
         String sql = """
             SELECT od.quantity, od.price, p.name AS productName
             FROM tblonlineorderdetail od
@@ -113,10 +111,10 @@ public class OrderDAO extends DAO {
             JOIN tblonlineorder oo ON od.tblOrderID = oo.ID
             WHERE oo.tblOrderID = ?
             """;
-        // === KẾT THÚC SỬA SQL ===
+      
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            // '?' bây giờ tham chiếu đến oo.tblOrderID (tức là tblorder.ID)
+         
             ps.setInt(1, orderId); 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -135,7 +133,7 @@ public class OrderDAO extends DAO {
         return details;
     }
 
-    // Chi tiết hóa đơn tại quầy
+
     private List<SalesInvoiceDetail> getSalesInvoiceDetails(int orderId) {
         List<SalesInvoiceDetail> details = new ArrayList<>();
         String sql = """
@@ -165,7 +163,7 @@ public class OrderDAO extends DAO {
         return details;
     }
 
-    // Lấy nhân viên bán hàng
+ 
     private SalesStaff getSalesStaffById(int staffId) {
         String sql = """
             SELECT u.ID, u.name, s.position 
@@ -189,7 +187,7 @@ public class OrderDAO extends DAO {
         return null;
     }
 
-    // Lấy khách hàng
+ 
     public Customer getCustomerById(int id) {
         String sql = "SELECT u.* FROM tbluser u JOIN tblcustomer c ON u.ID = c.tblUserID WHERE u.ID = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
