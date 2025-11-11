@@ -1,0 +1,94 @@
+/* Đặt lại mặc định một số thuộc tính */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Toàn bộ trang */
+body {
+  background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form đăng nhập */
+form {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 340px;
+/*   text-align: center; */
+  animation: fadeIn 0.6s ease;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tiêu đề */
+form h2 {
+  color: #2d3436;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* Ô nhập */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 10px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi focus */
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #0984e3;
+  box-shadow: 0 0 5px rgba(9, 132, 227, 0.4);
+  outline: none;
+}
+
+/* Nút đăng nhập */
+input[type="submit"] {
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover nút */
+input[type="submit"]:hover {
+  background-color: #74b9ff;
+}
+
+/* Thông báo lỗi */
+p {
+  color: #e74c3c;
+  margin-top: 15px;
+  font-size: 14px;
+  animation: shake 0.4s ease;
+}
+
+/* Hiệu ứng rung khi có lỗi */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}

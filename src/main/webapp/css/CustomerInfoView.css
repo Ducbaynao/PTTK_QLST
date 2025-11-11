@@ -1,0 +1,86 @@
+/* CustomerInfoView.css */
+
+/* Reset và font chung */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Đã thay đổi: Tiêu đề chính h1 */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px; /* Giảm khoảng cách với h2 */
+    color: #2c3e50;
+    font-size: 2em; /* To rõ */
+}
+
+/* Đã thay đổi: Tiêu đề phụ h2 */
+h2 {
+    text-align: center;
+    margin-top: 0; /* Bỏ margin top */
+    color: #333;
+    font-size: 1.2em; /* Nhỏ hơn h1 */
+    font-weight: normal; /* Không cần quá đậm */
+}
+
+/* Form đăng ký */
+form {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fefefe;
+}
+
+/* Nút đăng ký */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #27ae60;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #219150;
+}
+
+/* Link quay lại */
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
