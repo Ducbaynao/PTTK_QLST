@@ -10,8 +10,8 @@
 %>
 <html>
 <head>
-    <title>Trang xem thống kê</title> <%-- Sửa title --%>
-    <%-- Thêm link CSS --%>
+    <title>Trang xem thống kê</title> 
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/StatisticsView.css">
 </head>
 <body>
@@ -19,14 +19,14 @@
 <%-- Thêm container --%>
 <div class="container">
 
-    <h2>Xem thống kê</h2> <%-- Sửa h2 --%>
+    <h2>Xem thống kê</h2> 
 
-    <%-- Thêm thông tin nhân viên --%>
+    
 	<p class="staff-info">
 	    <strong>Nhân viên quản lí:</strong> <strong><%= u.getName() %></strong>
 	</p>
 
-    <%-- Nhóm các nút lại --%>
+   
     <div class="button-group">
         <form action="CustomerRevenueStatisticsView.jsp" method="get">
             <button type="submit">Thống kê doanh thu</button>
