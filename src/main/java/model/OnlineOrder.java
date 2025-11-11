@@ -12,7 +12,7 @@ public class OnlineOrder extends Order {
     // Danh sách chi tiết đơn hàng online
     private List<OnlineOrderDetail> details = new ArrayList<>();
 
-    // Mảng Product[] để tiện hiển thị (nếu bạn muốn)
+
     private Product[] products;
 
     // Constructors
@@ -51,7 +51,7 @@ public class OnlineOrder extends Order {
         updateProductsArray();
     }
 
-    // Tự động tạo mảng Product[] từ danh sách chi tiết
+  
     private void updateProductsArray() {
         if (details == null || details.isEmpty()) {
             this.products = new Product[0];
